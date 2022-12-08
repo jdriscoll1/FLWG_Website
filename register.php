@@ -1,8 +1,4 @@
-<?php 
-session_start(); 
-// First, connect to the server
-$conn = require('includes/connect.php');
-
+<?php session_start(); // First, connect to the server $conn = require('includes/connect.php'); 
 if($conn->connect_error){
 	die("Connection Failed: " . $conn->connect_error);
 }
@@ -18,9 +14,9 @@ function calculateAge($b_date, $c_date){
 	
 }
 
-$u_name = htmlspecialchars($_POST['u_name']); 
-$p_word = htmlspecialchars($_POST["p_word"]);
-$email = htmlspecialchars($_POST["email"]);
+$u_name = htmlspecialchars($_POST['u_name'], ENT_QUOTES); 
+$p_word = htmlspecialchars($_POST["p_word"], ENT_QUOTES);
+$email = htmlspecialchars($_POST["email"], ENT_QUOTES);
 
 
 // The string is not too long
