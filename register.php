@@ -18,9 +18,9 @@ function calculateAge($b_date, $c_date){
 	
 }
 
-$u_name = $_POST['u_name']; 
-$p_word = $_POST["p_word"];
-$email = $_POST["email"];
+$u_name = htmlspecialchars($_POST['u_name']); 
+$p_word = htmlspecialchars($_POST["p_word"]);
+$email = htmlspecialchars($_POST["email"]);
 
 
 // The string is not too long

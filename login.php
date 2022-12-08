@@ -14,8 +14,8 @@ if($conn->connect_error){
 // 2) Checks if the username & Password Match
 
 // Get the username & password from the server
-$u_name = $_POST['u_name'];
-$p_word = $_POST['p_word'];
+$u_name = htmlspecialchars($_POST['u_name']);
+$p_word = htmlspecialchars($_POST['p_word']);
 $u_id = -1; 
 
 
