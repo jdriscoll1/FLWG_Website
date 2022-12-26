@@ -1,23 +1,11 @@
-<?php session_start(); // First, connect to the server $conn = require('includes/connect.php'); 
-if($conn->connect_error){
-	die("Connection Failed: " . $conn->connect_error);
-}
+<?php 
+session_start(); 
 
-
-function calculateAge($b_date, $c_date){
-	//split the inital date into [0] = Y [1] = m [2] = d
-	$i = explode('-', $b_date);
-	// split the current date into [0] = Y [1] = m [2] = d	
-	$c = explode('-', $c_date);
-	// If the current month is less than the the birth month, that means that the age is going to to be y2 - y1 - 1 
-	return ($c[0] - $i[0]) - (($c[1] < $i[1]) ? 1 : ($c[1] == $i[1] && $c[2] < $i[2]) ? 1 : 0);  
-	
-}
-
+// First, connect to the server 
+$conn = require('connect.php'); 
 $u_name = htmlspecialchars($_POST['u_name'], ENT_QUOTES); 
 $p_word = htmlspecialchars($_POST["p_word"], ENT_QUOTES);
 $email = htmlspecialchars($_POST["email"], ENT_QUOTES);
-
 
 // The string is not too long
 
@@ -30,6 +18,8 @@ if(preg_match('/[^a-z\d]/i', $u_name)){
 	echo "The string must contain only alphabetical and numerical characters, no special characters are allowed";	
 	exit(0); 
 }
+
+
 // There are no inappropriate usernames (regex)
 // Check if the username hasn't already been taken 
 $q = sprintf("select * from users where u_name = '%s'", $u_name); 
@@ -59,25 +49,21 @@ if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 $o = [ 'cost' => 9, ]; 
 $p_word = password_hash($p_word, PASSWORD_DEFAULT, $o); 
 
-
-
 //echo "Your data has been validated!"; 
-$insert_format = "insert into users (u_name, p_word, email, creation_date) values ('%s', '%s', '%s', '%s');"; 
-$insert_query = sprintf($insert_format, $u_name, $p_word, $email, $creation_date);
-if($conn->query($insert_query) === TRUE){
-	echo "New Record Succesfully Created"; 
-}
-else{
-	echo "Error: " . $insert_query . "<br>" . $conn->error; 
-}
+$insert_query = $conn->prepare("insert into users (u_name, p_word, email, creation_date) values (?, ?, ?, ?);"); 
+$insert_query->bind_param("ssss", $u_name, $p_word, $email, $creation_date);
+$insert_query->execute();
+$u_id = $conn->insert_id; 
+$_SESSION['u_name'] = $u_name; 
+$_SESSION['u_id'] = $u_id; 
+/*
+//We need to get the user's id
+$get_id_query = $conn->prepare("select u_id from users where u_name = ?;");
+$get_id_query->bind_param("s", $u_name);
+$get_id_query->execute();
 
+$result = $get_id_query->get_result();
 
-/*We need to get the user's id*/
-$get_id_query = sprintf("select u_id from users where u_name = '%s';", $u_name); 
-
-$result = $conn->query($get_id_query); 
-
-//echo "Result: " . $result->num_rows; 
 
 // Check if there's at least one row in the database where there is a username 
 if($result->num_rows == 1){
@@ -86,8 +72,11 @@ if($result->num_rows == 1){
 	$_SESSION['u_name'] = $u_name; 
 	$_SESSION['u_id'] = $row['u_id'];
 }
+ */
+ 
+
 $conn->close(); 
-echo ""; 
+echo $_SESSION['u_id']; 
 ?>
 
 

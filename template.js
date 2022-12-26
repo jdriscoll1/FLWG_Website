@@ -156,14 +156,18 @@ var navigationBar = `
 										p_word: document.getElementById('p_word').value,
 										email: document.getElementById('email').value
 									};
+									alert("Success");
 								 
 									$.ajax({
 										type: "POST",
 										data: userData,
-										url: 'register.php',
+										url: 'includes/register.php',
+										error: function(o){
+											alert("Error: " + o);
+										},
 										success: function(o){
-											console.log("Success");
-											window.location.href = ""; 
+											alert("Result: " + o);
+											//window.location.href = ""; 
 										}
 									
 									});
