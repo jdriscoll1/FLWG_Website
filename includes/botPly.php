@@ -18,7 +18,7 @@ class flwg_structs {
 		/*Stores all of the words*/	
 		$this->WordSet = init_WordSet(2234); 
 		/*Path to the file*/ 
-		$this->path = "/var/www/html/flwg/docs/4/Four_Letters_Connections.txt"; 
+		$this->path = "/var/www/html/docs/4/Four_Letters_Connections.txt"; 
 		/*Fills the hash maps*/	
 		Initialize_HashMaps($this->WordToInt, $this->IntToWord, $this->path); 
 		/*Calculate the word's id*/	

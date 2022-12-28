@@ -14,7 +14,7 @@ unset($_SESSION['q_id']);
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="template.js" type="text/javascript" def></script>
 
 </head>
@@ -77,9 +77,9 @@ unset($_SESSION['q_id']);
 		<span class="close" id="flwgClose">&times;</span>
 		<p>Select your opponent</p>
 		<!-- Play Against Computer -->
-		<button class="button m-3" onclick="location.href='./flwg.php'");>Computer</button>	
+		<button class="button m-3 text-light" onclick="location.href='./flwg.php'");>Computer</button>	
 		<!-- Play Against Friend -->
-		<button class="button m-3 bg-primary" onclick="queryFLWG();" id="flwg-guest">Guest</button>
+		<button class="button m-3 bg-primary text-light" onclick="queryFLWG();" id="flwg-guest">Guest</button>
 		<!-- Customize -->
 	</div>
 </div>
@@ -123,13 +123,11 @@ function exitQueue(e) {
 		// Reset the decrement to true
 		pageData['decrement'] = true; 
 		var queueData = {'q_id': pageData['q_id']}; 
-		console.log("Before userQuit.php");
 		$.ajax({
 			type: "POST",
 			data: queueData,
-			url: "userQuit.php",
+			url: "includes/userQuit.php",
 			success: function(r){
-				console.log("After userQuit.php");
 				// Set it to say guest and that it is no longer searching
 				document.getElementById("flwg-guest").innerHTML = "Guest";	
 				pageData['decrement'] = true; 
@@ -152,7 +150,7 @@ function queryQueue(data, button){
 	$.ajax({
 		type: "POST",
 		data: data,
-		url: 'queryQueue.php',
+		url: 'includes/queryQueue.php',
 		success: function(g_id){
 			if(g_id > -1){
 				pageData['g_id'] = g_id; 
@@ -193,7 +191,7 @@ function queryFLWG(){
 		$.ajax({
 			type: "POST",
 			data: data,
-			url: 'initialQueue.php',
+			url: 'includes/initialQueue.php',
 			success: function(jsonData){
 				// Output the result of the initialQueue.php
 				console.log(jsonData);

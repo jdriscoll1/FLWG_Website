@@ -293,7 +293,7 @@ session_start();
 			// Initialize the dictionaries 
 			$.ajax({
 			type: "GET",
-			url: 'createDictionary.php',
+			url: 'includes/createDictionary.php',
 			success: function(r){
 				// Parse the results and seperate them
 				// if the game id is not -1, frequently ping hte database

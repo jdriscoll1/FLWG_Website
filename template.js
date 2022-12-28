@@ -91,7 +91,7 @@ var navigationBar = `
 				var signedIn = -1; 
 				$.ajax({
 					type: "GET",
-					url: "getSignedIn.php",
+					url: "includes/getSignedIn.php",
 					success: function(s){
 						document.getElementById("loginInfo").innerHTML = (s == -1) ? l1 : l2;
 						// If the user is not signed in 
@@ -137,7 +137,7 @@ var navigationBar = `
 									$.ajax({
 										type: "POST",
 										data: userData,
-										url: 'login.php',
+										url: 'includes/login.php',
 										success: function(u_id){
 											console.log("Success");
 											window.location.href = "";
@@ -187,7 +187,7 @@ var navigationBar = `
 									
 									$.ajax({
 										type: "GET",
-										url: "logout.php",
+										url: "includes/logout.php",
 										success: function(e){
 											var x = 0; 
 											window.location.href = "";
@@ -204,5 +204,4 @@ var navigationBar = `
 
 </nav>
 <!-- END COPY -->
-
 `
