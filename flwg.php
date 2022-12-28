@@ -51,7 +51,7 @@ session_start();
 				
 						<!-- Insert input #1  -->
 						<div class="form-group col-xl-12" style="padding:20px">
-							<input type="text" maxlength=5 placeholder="Enter a four letter word" class="form-control" id="w_str">
+							<input type="text" maxlength=5 autocomplete="off" placeholder="Enter a four letter word" class="form-control" id="w_str">
 						</div>
 				
 
