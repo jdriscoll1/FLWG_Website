@@ -19,14 +19,14 @@ $p_word = htmlspecialchars($_POST['p_word'], ENT_QUOTES);
 $u_id = -1; 
 
 
-// Access the database to see if the username & password are there
+// Access the database to see if the username exists in the database 
 
 // Get query
-$query_str = "select u_id, u_name, p_word from users where u_name = '%s';"; 
-$query = sprintf($query_str, $u_name);
+$uname_reuse_query = $conn->prepare("select u_id, u_name, p_word from users where u_name = ?;"); 
+$uname_reuse_query->bind_param("s", $u_name); 
 
-$result = $conn->query($query); 
-
+$uname_reuse_query->execute();
+$result = $uname_reuse_query->get_result();
 // Check if there's at least one row in the database where there is a username 
 if($result->num_rows == 1){
 	// First get the correct row in the database

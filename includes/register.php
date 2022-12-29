@@ -22,14 +22,17 @@ if(preg_match('/[^a-z\d]/i', $u_name)){
 
 // There are no inappropriate usernames (regex)
 // Check if the username hasn't already been taken 
-$q = sprintf("select * from users where u_name = '%s'", $u_name); 
+$check_uname_query = $conn->prepare("select * from users where u_name = ?;"); 
+$check_uname_query->bind_param("s", $u_name);
+$check_uname_query->execute();
+$result = $check_uname_query->get_result(); 
+
 // Create the sql queyr with the username
 	
 // Run the query & check the number of rows 
-$r = $conn->query($q); 
-$n = $r->num_rows; 
-if($n > 0){
-	echo "This username has been used ". $n . " times";
+$num_usernames = $result->num_rows > 0; 
+if($num_usernames > 0){
+	echo "Please use a different username";
 	exit(0); 
 } 
 
