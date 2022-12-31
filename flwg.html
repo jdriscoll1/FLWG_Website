@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+	<head>	 
+		<!-- Initialize jquery libraries for ajax accessibility -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- Initialize any templates -->
+		<script src="t1.js" type="text/javascript" def></script>
+		<!-- Initialize Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>	
+		<link rel="stylesheet" href="modal.css">
+	</head>
+
+	<body>
+		
+		<!-- Navbar -->
+		<script>
+			document.write(navigationBar);
+		</script>
+		<div style="text-align:center;padding-top:25px">	
+			<h1 style="center" id="announcer"></h1>
+		</div>
+			
+		<!-- Word Display -->
+		<!-- The full box -->
+
+                <form method="get" class="ajax" id="wordForm" action="includes/functions.php">
+		<div class="d-flex justify-content-center flex-nowrap container" style="padding:20px">
+			<!-- The grey box -->
+			<div class="d-flex justify-content-center flex-nowrap bg-dark" id="b1" style="padding:20px; width:1000px; height: 250px;">
+				<div class="row">
+					<!-- The blue box -->
+					<div class="col-sm-12 col-xl-12 justify-content-center d-flex">
+						<div class="bg-primary text-white mx-10 p-3"; style="width:550px; text-align:center">
+							<!-- The text -->
+							<h1 id="word" style="center"></h1>
+						</div>
+					</div>
+					
+					<div class="row">
+				
+						<!-- Insert input #1  -->
+						<div class="form-group col-xl-12" style="padding:20px">
+							<input type="text" maxlength=5 autocomplete="off" placeholder="Enter a four letter word" class="form-control" id="w_str">
+						</div>
+				
+
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xl-12">
+							<div class="alert alert-danger" id="err" hidden><strong>Error: </strong>Input was not long enough</div>	
+						</div>
+					</div>
+					<div class="row justify-content-center flex-nowrap">
+						<div class="col-sm-4 justify-content-center d-flex">
+							<button type="submit" id="submit" class="btn btn-success" style="font-size:25px">Enter word!</button>
+						</div>
+						<div class="col-sm-4 justify-content-center d-flex"> 
+							<button type="button" id="resign" class="btn btn-danger justify-content-center d-flex" style="font-size:25px" href="index.php">Resign</button>
+						</div>
+					
+					</div>				
+
+				</div>
+
+			</div>
+		</div>
+		</form>	
+
+		<div id="winModal" class="modal">
+			<div class="modal-content">
+				<!-- Header: Congrats! You Won-->
+				<div class="container-fluid p-5 text-center bg-success text-white" style="width:100%">
+					<h1>Congratulations, you've won!</h1>
+				</div>	
+				
+				<!-- Check Mark png -->
+				<img src="./img/star.svg" alt="star" style="width:35%; margin:auto; height:35%">
+				
+
+				<!-- New Game/Home Screen -->
+				<div class="row justify-content-center flex-nowrap" style="padding-top:25px">
+				
+					<div class="col-sm-4 justify-content-center d-flex">
+						<form action="flwg.html">
+							<button type="submit" id="submit" class="btn btn-success" style="font-size:25px">Play Again</button>
+						</form>
+					</div>
+						<div class="col-sm-4 justify-content-center d-flex"> 
+							
+					<form action="index.php">
+							<button type="submit" class="btn btn-secondary justify-content-center d-flex" style="font-size:25px">Home Page</button>
+
+					</form>
+						</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="loseModal" class="modal">
+			<div class="modal-content">
+				<!-- Header: Congrats! You Won-->
+				<div class="container-fluid p-5 text-center bg-danger text-white" style="width:100%">
+					<h1>Defeat, better luck next time!</h1>
+				</div>	
+				
+				<!-- Check Mark png -->
+				<img src="./img/lose.svg" alt="star" style="width:35%; margin:auto; padding-top: 20px; height:35%">
+				
+
+				<!-- New Game/Home Screen -->
+				<div class="row justify-content-center flex-nowrap" style="padding-top:25px">
+				
+					<div class="col-sm-4 justify-content-center d-flex">
+						<form action="flwg.html">
+							<button type="submit" id="submit" class="btn btn-primary" style="font-size:25px">Play Again</button>
+						</form>
+					</div>
+						<div class="col-sm-4 justify-content-center d-flex"> 
+							
+					<form action="index.php">
+							<button type="submit" class="btn btn-secondary justify-content-center d-flex" style="font-size:25px">Home Page</button>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<div class="content bg-dark" style="position:fixed; left:0; bottom:0; width:100%; text-align: center;">
+			<p>Display</p>
+		</div>
+		
+		<script src="flwg.js" type="text/javascript" def></script>
+        </body>
+
+
+</html>

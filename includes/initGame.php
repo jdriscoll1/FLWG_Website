@@ -21,4 +21,7 @@ fclose($file);
 $_SESSION['WordToInt'] = $wordList; 
 $_SESSION['IntToWord'] = $keys;
 $_SESSION['WordSet'] = []; 
+echo json_encode(
+	['g_id' =>   ((isset($_SESSION['g_id']))    ? $_SESSION['g_id']    : -1),
+         'myTurn' => ((isset($_SESSION['turn_id'])) ? $_SESSION['turn_id'] : -1)]); 
 ?>

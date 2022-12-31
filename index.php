@@ -77,7 +77,7 @@ unset($_SESSION['q_id']);
 		<span class="close" id="flwgClose">&times;</span>
 		<p>Select your opponent</p>
 		<!-- Play Against Computer -->
-		<button class="button m-3 text-light" onclick="location.href='./flwg.php'");>Computer</button>	
+		<button class="button m-3 text-light" onclick="location.href='./flwg.html'");>Computer</button>	
 		<!-- Play Against Friend -->
 		<button class="button m-3 bg-primary text-light" onclick="queryFLWG();" id="flwg-guest">Guest</button>
 		<!-- Customize -->
@@ -157,7 +157,7 @@ function queryQueue(data, button){
 				// Stops webpage from asking player if they want to leave page
 				window.removeEventListener('beforeunload', exitQueue);
 				// Redirect user to game page 	
-				window.location.href = "flwg.php";
+				window.location.href = "flwg.html";
 			}	
 		}
 
@@ -208,7 +208,7 @@ function queryFLWG(){
 					pageData['g_id'] = result['q_id'];
 					window.removeEventListener('beforeunload', exitQueue);
 					// Redirect user to proper page
-					window.location.href = "flwg.php";
+					window.location.href = "flwg.html";
 				}
 				else{
 					
