@@ -59,7 +59,7 @@ var navigationBar = `
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg p-0 navbar-dark bg-dark">
 	<div class="container-fluid p-0" style="float:right; fill:white;">
-		<a class="navbar-brand" style="fill:white; padding-left:10px" href="./index.php">
+		<a class="navbar-brand" style="fill:white; padding-left:10px" href="./index.html">
 			<img src="./img/home.svg" alt="logo" width="33" height="33">
 		</a>	
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
