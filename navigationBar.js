@@ -83,9 +83,10 @@ var navigationBar = `
 				// 2 different strings, a. logged in variants b. not logged in variant
 				// Not Logged in variant is what we already have
 
-				// Logged Out: If the user is not logged in it will output Register & Login	
+				// Logged Out: Output Register & Login	
       				var l1 = '<li><a class="nav-link" style="font-size:24px;" id="registerButton" href="#registerModal" date-toggle="modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li><li><a class="nav-link" style="font-size:24px;" id="loginButton" href="#login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>';
-				// Logged in: If the user is logged in it will output Profile & Logout variant is what we want to get 
+
+				// Logged in: Output Profile & Logout 
       				var l2 = '<li><a class="nav-link" style="font-size:24px;" id="profileButton" href="#profile" date-toggle="modal"><span class="glyphicon glyphicon-user"></span>Profile</a></li><li><a class="nav-link" style="font-size:24px;" id="logoutButton" href="#logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>';
 
 				var signedIn = -1; 
@@ -189,7 +190,6 @@ var navigationBar = `
 										type: "GET",
 										url: "includes/logout.php",
 										success: function(e){
-											var x = 0; 
 											window.location.href = "";
 										}
 									});
@@ -204,4 +204,5 @@ var navigationBar = `
 
 </nav>
 <!-- END COPY -->
-`
+`;
+document.write(navigationBar); 
