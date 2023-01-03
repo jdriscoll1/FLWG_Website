@@ -113,7 +113,6 @@ $.ajax({
 					url: 'includes/initialQueue.php',
 					success: function(jsonData){
 						// Output the result of the initialQueue.php
-						console.log(jsonData);
 						// The result of the game query
 						var result = JSON.parse(jsonData);
 						// This is the data that is sent into the queue quit 

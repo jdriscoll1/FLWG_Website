@@ -53,7 +53,6 @@ success: function(s){
 					data: userData,
 					url: 'includes/login.php',
 					success: function(u_id){
-						console.log("Success");
 						window.location.href = "";
 					}
 				
@@ -70,7 +69,6 @@ success: function(s){
 					p_word: document.getElementById('p_word').value,
 					email: document.getElementById('email').value
 				};
-				alert("Success");
 			 
 				$.ajax({
 					type: "POST",
@@ -80,8 +78,7 @@ success: function(s){
 						alert("Error: " + o);
 					},
 					success: function(o){
-						alert("Result: " + o);
-						//window.location.href = ""; 
+						window.location.href = ""; 
 					}
 				
 				});
