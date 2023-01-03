@@ -17,7 +17,6 @@ while(!feof($file)){
 $keys = array_keys($wordList); 
 
 fclose($file);
-
 $_SESSION['WordToInt'] = $wordList; 
 $_SESSION['IntToWord'] = $keys;
 $_SESSION['WordSet'] = []; 
