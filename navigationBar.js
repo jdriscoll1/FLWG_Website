@@ -5,7 +5,7 @@ var navigationBar = `
 
 			<span class="close" id="registerClose">&times;</span>
 			<h1>Register</h1>
-			<form class="rc" id="registerForm">
+			<form class="rc" id="registerForm" accept-charset=utf-8>
 				<div class="mb-3 mt-3">
 					<label for="uname" class="form-label">Username: </label>
 					<input type="text" class="form-control" id="u_name" placeholder="Enter username" maxlength=20 name="u_bname">
@@ -38,7 +38,7 @@ var navigationBar = `
 
 			<span class="close" id="loginClose">&times;</span>
 			<h1>Login:</h1>
-			<form class="rc" id="loginForm">
+			<form class="rc" id="loginForm" accept-charset=utf-8>
 				<div class="mb-3 mt-3">
 					<label for="uname" class="form-label">Username: </label>
 					<input type="text" class="form-control" id="u_name_login" placeholder="Enter username" maxlength=20 name="u_bname">

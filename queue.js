@@ -98,6 +98,9 @@ $.ajax({
 				flwgModal.style.display = "none";
 			
 			}
+			else if (pageData['q_id'] != -1){
+				alert("You are already in a queue");
+			}
 			// Otherwise it will announce the user is in the queue
 			else{
 				// Solves weird error where it removes user from queue multiple times
@@ -106,6 +109,7 @@ $.ajax({
 				var data = {totPlayers: pageData['totPlayers'], gmode: pageData['g_mode']};
 				// Then I send out an ajax request asking if there is a queue, if there is not one they will be inserted into the queue
 				flwgGuestButton.innerHTML = "Waiting for Opponents";
+				
 				// When a button is pressed send out an ajax reqeust to create a queue 
 				$.ajax({
 					type: "POST",
@@ -129,12 +133,9 @@ $.ajax({
 							window.location.href = "flwg.html";
 						}
 						else{
-							// if the q_id is -1
-							if(result['q_id'] != -1){
-								pageData['q_id'] = result['q_id'];
-								// It is necessary to occasionally check if any users have entered the game
-								pageData['interval_id'] = setInterval(queryQueue, 1000, pageData, flwgGuestButton);
-							}	
+							pageData['q_id'] = result['q_id'];
+							// It is necessary to occasionally check if any users have entered the game
+							pageData['interval_id'] = setInterval(queryQueue, 1000, pageData, flwgGuestButton);
 						}
 					}
 				});
