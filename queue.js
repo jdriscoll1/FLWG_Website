@@ -110,7 +110,7 @@ $.ajax({
 				$.ajax({
 					type: "POST",
 					data: data,
-					url: 'includes/initialQueue.php',
+					url: 'includes/initQueue.php',
 					success: function(jsonData){
 						// Output the result of the initialQueue.php
 						// The result of the game query
@@ -129,10 +129,12 @@ $.ajax({
 							window.location.href = "flwg.html";
 						}
 						else{
-							
-							pageData['q_id'] = result['q_id'];
-							// It is necessary to occasionally check if any users have entered the game
-							pageData['interval_id'] = setInterval(queryQueue, 1000, pageData, flwgGuestButton);
+							// if the q_id is -1
+							if(result['q_id'] != -1){
+								pageData['q_id'] = result['q_id'];
+								// It is necessary to occasionally check if any users have entered the game
+								pageData['interval_id'] = setInterval(queryQueue, 1000, pageData, flwgGuestButton);
+							}	
 						}
 					}
 				});

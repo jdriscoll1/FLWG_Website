@@ -1,5 +1,16 @@
 <?php 
 session_start(); 
+
+// Validate that they are not already in a queue
+// If the q id is set and not equal to negative one they are in a game
+if(isset($_SESSION['q_id']) && $_SESSION['q_id'] !=  -1){
+	// don't start the game and set the queue id to negative one to state it shouldn't be changed
+	echo json_encode(['startGame' => false, 'q_id' => -1]);	
+	exit(0);	
+	
+}
+
+
 // Connect to the database
 
 $conn = require('connect.php');
