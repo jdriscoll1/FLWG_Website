@@ -127,21 +127,24 @@ success: function(gameDataResults){
 	// Set the total number of turns to too, this will eventually be updated when multiplayer is added
 	var totTurns = 2; 
 	// Set the current turn to 0, this determines whose turn it is 
-	gameStatus['currTurn'] = 0; 
+	gameStatus['currTurn'] = gameData['currTurn']; 
 	// This updates the user whether it's their turn or the opponents 
 	var announcer = document.getElementById('announcer');
+	var announcement = '';
 	// Tells the announcer what to say 
-	switch(gameStatus['myTurn']){
-		case(-1):
-			announcer.innerHTML = 'Versus: Beat the Bot'
-			break; 
-		case(0):
-			announcer.innerHTML = 'Versus: Take Your Turn'
-			break; 
-		default: 
-			announcer.innerHTML = 'Versus: Waiting for Opponent';
-			break; 
+	// If they are competing against the computer
+	if(gameStatus['myTurn'] == -1){
+		announcement = 'Versus: Beat the Bot'; 
+	}	
+	// If it is their turn
+	else if (gameStatus['myTurn'] == gameStatus['currTurn']){
+		announcement = 'Versus: Take Your Turn'; 
 	}
+	else{
+		announcement = 'Versus: Waiting for Opponent'; 
+	}
+	
+	announcer.innerHTML = announcement;  
 
 	// Outputs the current game id
 

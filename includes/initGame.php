@@ -14,6 +14,17 @@ while(!feof($file)){
 	$index += 1; 
 }
 
+$g_id = ((isset($_SESSION['g_id'])) ? $_SESSION['g_id'] : -1); 
+// It needs to receive the current turn as well, in case the webpage refreshes 
+// 1) Connect to the database
+$conn = require("connect.php"); 
+// 2) Acquire the curr row based on the g_id 
+$getCurrTurn = sprintf("select currTurn from game where g_id = %d", $g_id); 
+$result = $conn->query($getCurrTurn); 
+$row = $result->fetch_assoc(); 
+$currTurn = $row['currTurn'];
+$conn->close();
+// 3) Obtain the curr id 
 $keys = array_keys($wordList); 
 
 fclose($file);
@@ -21,6 +32,8 @@ $_SESSION['WordToInt'] = $wordList;
 $_SESSION['IntToWord'] = $keys;
 $_SESSION['WordSet'] = []; 
 echo json_encode(
-	['g_id' =>   ((isset($_SESSION['g_id']))    ? $_SESSION['g_id']    : -1),
-         'myTurn' => ((isset($_SESSION['turn_id'])) ? $_SESSION['turn_id'] : -1)]); 
+	['g_id' => $g_id,
+	'myTurn' => ((isset($_SESSION['turn_id'])) ? $_SESSION['turn_id'] : -1),
+	'currTurn' => $currTurn 
+	]); 
 ?>
