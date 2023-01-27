@@ -181,7 +181,7 @@ success: function(gameDataResults){
 		$('form.ajax').on('submit', function(e){
 			e.preventDefault();
 			// The user input  -- temporary because it might not be used
-			var tempInput = $("#w_str").val();
+			var tempInput = $("#w_str").val().toLowerCase().trim();
 			var input = {curr: tempInput, prev: gameStatus['currWord']}; 
 
 			// This is the textbox that will be updated whenever a new word is entered 	
