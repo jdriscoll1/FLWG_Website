@@ -4,16 +4,34 @@ $.ajax({
 	success: function(u_id){
 		// The necessary data for the page to be accessible 
 		var pageData = {'decrement': false, 'totPlayers': 2, 'g_mode': 0, 'u_id': u_id, 'q_id': -1, 'interval_id': -1};
-
+		/*FLWG Elements*/
 		// The page that allows you to choose which game you'd like to play
-		var flwgModal = document.getElementById("myModal");
+		var flwgModal = document.getElementById("flwgModal");
 		
 		// The button that opens the modal
 		var flwgButton = document.getElementById("flwgBtn");
 
 		// Close the four letter word game modal
 		var flwgClose = document.getElementById("flwgClose");
+
+		/*FLWP Elements*/
+		// The page that gives users game options
+		var flwpModal = document.getElementById("flwpModal");
+
+		// The button that opens the FLWP modal
+		var flwpButton = document.getElementById("flwpBtn");
+
+		// The close button for the flwp
+		var flwpClose = document.getElementById("flwpClose");
 	
+
+		/*FLWC Elements*/
+		var flwcModal = document.getElementById("flwcModal");
+
+		var flwcButton = document.getElementById("flwcBtn");
+
+		var flwcClose = document.getElementById("flwcClose");
+
 		var flwgQueueGuest = document.getElementById("flwg-guest");  
 
 		var flwgQueueComputer = document.getElementById("flwg-computer"); 
@@ -28,6 +46,22 @@ $.ajax({
 		}
 		flwgQueueComputer.onclick = function() {
 			location.href='./flwg.html'; 
+		}
+		
+		flwpButton.onclick = function(){
+			flwpModal.style.display = "block"; 
+		}
+
+		flwpClose.onclick = function(){
+			flwpModal.style.display = "none"; 
+		}
+
+		flwcButton.onclick = function(){
+			flwcModal.style.display = "block";
+		}
+
+		flwcClose.onclick = function(){
+			flwcModal.style.display = "none"; 
 		}
 		
 		// Code when the user exits the queue 
