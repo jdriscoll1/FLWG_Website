@@ -1,3 +1,34 @@
+// Goal: Create variables that represent the nav bar's modals
+var helpModal = document.getElementById("helpModal");
+var helpButton = document.getElementById("helpButton");
+var helpClose = document.getElementById("helpClose");
+helpButton.onclick = function() {
+	helpModal.style.display = "block";
+}
+helpClose.onclick = function() {
+	helpModal.style.display = "none"; 
+}
+
+var aboutModal = document.getElementById("aboutModal");
+var aboutButton = document.getElementById("aboutButton");
+var aboutClose = document.getElementById("aboutClose");
+aboutButton.onclick = function() {
+	aboutModal.style.display = "block";
+}
+aboutClose.onclick = function() {
+	aboutModal.style.display = "none"; 
+}
+
+var moreModal = document.getElementById("moreModal");
+var moreButton = document.getElementById("moreButton");
+var moreClose = document.getElementById("moreClose");
+moreButton.onclick = function() {
+	moreModal.style.display = "block";
+}
+moreClose.onclick = function() {
+	moreModal.style.display = "none"; 
+}
+
 // Goal: Create two different navbar outputs depending if the user is logged in 
 // 2 different strings, a. logged in variants b. not logged in variant
 // Not Logged in variant is what we already have
@@ -6,6 +37,7 @@ var l1 = '<li><a class="nav-link" style="font-size:24px;" id="registerButton" hr
 // Logged in: Output Profile & Logout 
 var l2 = '<li><a class="nav-link" style="font-size:24px;" id="profileButton" href="#profile" date-toggle="modal"><span class="glyphicon glyphicon-user"></span>Profile</a></li><li><a class="nav-link" style="font-size:24px;" id="logoutButton" href="#logout"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>';
 var signedIn = -1; 
+
 $.ajax({
 type: "GET",
 url: "includes/getSignedIn.php",
