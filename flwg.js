@@ -6,7 +6,6 @@ let resignBtn = document.getElementById("resign");
 
 // When the resign button is clicked it displays the block
 function gameOver() {	
-	alert("Game Over Called!");
 	clearInterval(gameStatus['currInterval']); 
 	// Call the javascript function for resign with the given gamemode
 	// Call the game functions lose 
@@ -34,19 +33,6 @@ resignBtn.onclick = function(){
 	gameOver();
 }
 
-// This should get moved to Bots 
-function resetGame(){
-	// When the user clicks reset, it will add both users to the 
-	if(g_id == -1){
-		// Reset the game and start over
-		gameFunctions.chooseFirst();
-	}
-	else{
-		
-	
-	}
-}
-
 // This is the function that displays an error in regards to user input
 function displayError(err){
 	// Grab the alert box that will be displayed
@@ -67,13 +53,16 @@ function displayError(err){
 
 function initializeTimer(){
 
+	clearInterval(gameStatus['currInterval']);
 	var timer = document.getElementById("timer");
 	gameStatus['currTime'] = gameStatus['maxTime']
 	timer.innerHTML = gameStatus['currTime']; 
 	gameStatus['currInterval'] = setInterval(function(){
 		gameStatus['currTime']--;	
 		if(gameStatus['currTime'] < 0){
-			gameOver();
+			if(gameStatus['currTurn'] == gameStatus['myTurn']){
+				gameOver();
+			}
 		}
 		timer.innerHTML = gameStatus['currTime']; 
 		
@@ -105,6 +94,7 @@ function checkGameStatus(gameStatus){
 			var updatedPlayers = result['numPlayers']; 
 			if(updatedPlayers == 1){
 				
+				clearInterval(gameStatus['currInterval']);
 				document.getElementById("winModal").style.display="block";
 				return; 
 			}
@@ -122,6 +112,7 @@ function checkGameStatus(gameStatus){
 	
 			// b) New Word: updatedTurn == (currTurn + 1) % numPlayers && currWord != updatedWord
 			else if(updatedTurn != gameStatus['currTurn'] && gameStatus['currID'] != updatedWordID){
+				initializeTimer();
 				gameStatus['currWord'] = updatedWordStr; 
 				gameStatus['currID'] = updatedWordID; 
 				gameStatus['currTurn'] = (gameStatus['currTurn'] + 1) % 2; 
@@ -203,7 +194,7 @@ success: function(gameDataResults){
 			setInterval(checkGameStatus, 1000, gameStatus);	
 		}
 		document.getElementById("word").innerHTML = gameStatus['currWord'];
-		alert("Timer should definitely init");
+		
 		// Start the timer
 		initializeTimer();
 		// 3. User enters word causing ajax to open buffer
@@ -228,6 +219,7 @@ success: function(gameDataResults){
 					if(errMsg === 'true'){
 						// The temporary string is the current word becaue that's what's being
 						var wordData = {'g_id': gameStatus['g_id'], 'curr': tempInput, 'currTurn': gameStatus['currTurn']};
+						initializeTimer();
 						
 						$.ajax({
 							type: "GET",
@@ -246,13 +238,15 @@ success: function(gameDataResults){
 									displayError('It is not your turn'); 	
 								}
 								else if(newWord.trim() === 'l'){	
+									clearInterval(gameStatus['currInterval']);
 									document.getElementById("winModal").style.display="block";
 
 								}										
 								// The bot sends a word and sets it to the new word that the user has to use
 								
 								else{
-
+										
+									initializeTimer();
 									gameStatus['currWord'] = newWord;   
 									var alertBox = document.getElementById('err');
 									document.getElementById("word").innerHTML = gameStatus['currWord'];
