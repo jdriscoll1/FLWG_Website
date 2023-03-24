@@ -1,5 +1,5 @@
 // This is the globally accessible game status 
-let gameStatus = {'currWord': '', 'currID': -1, 'g_id': -1, 'myTurn': -1, 'currTurn': -1}; 
+let gameStatus = {'currWord': '', 'currID': -1, 'g_id': -1, 'maxTime': 20, 'currInterval': null, 'currTime': 0, 'myTurn': -1, 'currTurn': -1}; 
 
 // Get the resign button by it's ID
 let resignBtn = document.getElementById("resign");	
@@ -57,6 +57,27 @@ function displayError(err){
 	alertBox.innerHTML = "<strong>Error: </strong>" + err; 	
 
 }
+
+
+function initializeTimer(){
+
+	alert("Big Test!");
+	var timer = document.getElementById("timer");
+	gameStatus['currTime'] = gameStatus['maxTime']
+	timer.innerHTML = gameStatus['currTime']; 
+	gameStatus['currInterval'] = setInterval(function(){
+		gameStatus['currTime']--;	
+		timer.innerHTML = gameStatus['currTime']; 
+	}, 1000)
+
+
+}
+
+
+
+
+
+
 // Fucntion that runs every few seconds or so that checks the server to see if it is
 function checkGameStatus(gameStatus){
 	// First check if it is currently my turn
@@ -177,6 +198,9 @@ success: function(gameDataResults){
 			setInterval(checkGameStatus, 1000, gameStatus);	
 		}
 		document.getElementById("word").innerHTML = gameStatus['currWord'];
+		alert("Timer should definitely init");
+		// Start the timer
+		initializeTimer();
 		// 3. User enters word causing ajax to open buffer
 		$('form.ajax').on('submit', function(e){
 			e.preventDefault();
