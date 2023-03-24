@@ -247,6 +247,7 @@ success: function(gameDataResults){
 								// The bot sends a word and sets it to the new word that the user has to use
 								
 								else{
+
 									gameStatus['currWord'] = newWord;   
 									var alertBox = document.getElementById('err');
 									document.getElementById("word").innerHTML = gameStatus['currWord'];
