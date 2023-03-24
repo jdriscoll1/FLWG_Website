@@ -5,7 +5,9 @@ let gameStatus = {'currWord': '', 'currID': -1, 'g_id': -1, 'maxTime': 20, 'curr
 let resignBtn = document.getElementById("resign");	
 
 // When the resign button is clicked it displays the block
-resignBtn.onclick = function() {	
+function gameOver() {	
+	alert("Game Over Called!");
+	clearInterval(gameStatus['currInterval']); 
 	// Call the javascript function for resign with the given gamemode
 	// Call the game functions lose 
 
@@ -26,6 +28,10 @@ resignBtn.onclick = function() {
 		document.getElementById("loseModal").style.display="block";
 	
 	}
+}
+
+resignBtn.onclick = function(){
+	gameOver();
 }
 
 // This should get moved to Bots 
@@ -61,21 +67,20 @@ function displayError(err){
 
 function initializeTimer(){
 
-	alert("Big Test!");
 	var timer = document.getElementById("timer");
 	gameStatus['currTime'] = gameStatus['maxTime']
 	timer.innerHTML = gameStatus['currTime']; 
 	gameStatus['currInterval'] = setInterval(function(){
 		gameStatus['currTime']--;	
+		if(gameStatus['currTime'] < 0){
+			gameOver();
+		}
 		timer.innerHTML = gameStatus['currTime']; 
+		
 	}, 1000)
 
 
 }
-
-
-
-
 
 
 // Fucntion that runs every few seconds or so that checks the server to see if it is
