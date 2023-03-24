@@ -53,6 +53,7 @@ function displayError(err){
 
 function initializeTimer(){
 
+	alert("Curr Turn: " + gameStatus['currTurn'] + " == " + gameStatus['myTurn']);
 	clearInterval(gameStatus['currInterval']);
 	var timer = document.getElementById("timer");
 	gameStatus['currTime'] = gameStatus['maxTime']

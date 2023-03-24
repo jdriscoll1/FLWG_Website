@@ -19,11 +19,16 @@ $g_id = ((isset($_SESSION['g_id'])) ? $_SESSION['g_id'] : -1);
 // 1) Connect to the database
 $conn = require("connect.php"); 
 // 2) Acquire the curr row based on the g_id 
-$getCurrTurn = sprintf("select currTurn from game where g_id = %d", $g_id); 
-$result = $conn->query($getCurrTurn); 
-$row = $result->fetch_assoc(); 
-$currTurn = $row['currTurn'];
-$conn->close();
+if($g_id != -1){
+	$getCurrTurn = sprintf("select currTurn from game where g_id = %d", $g_id); 
+	$result = $conn->query($getCurrTurn); 
+	$row = $result->fetch_assoc(); 
+	$currTurn = $row['currTurn'];
+	$conn->close();
+}
+else{
+	$currTurn = -1; 
+}
 // 3) Obtain the curr id 
 $keys = array_keys($wordList); 
 
