@@ -1,5 +1,5 @@
 // This is the globally accessible game status 
-let gameStatus = {'currWord': '', 'currID': -1, 'g_id': -1, 'maxTime': 20, 'currInterval': null, 'currTime': 0, 'myTurn': -1, 'currTurn': -1}; 
+let gameStatus = {'currWord': '', 'currID': -1, 'g_id': -1, 'maxTime': 20, 'currInterval': null, 'currTime': 0, 'myTurn': -1, 'currTurn': -1, 'wordCounter': 0}; 
 
 // Get the resign button by it's ID
 let resignBtn = document.getElementById("resign");	
@@ -53,13 +53,16 @@ function displayError(err){
 
 function initializeTimer(){
 
-	alert("Curr Turn: " + gameStatus['currTurn'] + " == " + gameStatus['myTurn']);
 	clearInterval(gameStatus['currInterval']);
 	var timer = document.getElementById("timer");
 	gameStatus['currTime'] = gameStatus['maxTime']
 	timer.innerHTML = gameStatus['currTime']; 
 	gameStatus['currInterval'] = setInterval(function(){
 		gameStatus['currTime']--;	
+		if(gameStatus['currTime'] < gameStatus['maxTime'] * .5){
+
+		}
+		if(gameStatus['currTime'] < )
 		if(gameStatus['currTime'] < 0){
 			if(gameStatus['currTurn'] == gameStatus['myTurn']){
 				gameOver();
@@ -106,10 +109,10 @@ function checkGameStatus(gameStatus){
 			else if(gameStatus['currID'] == updatedWordID && gameStatus['currTurn'] == updatedTurn){
 				 return ;
 			}
+			
 			// c) User Resigned -- Don't need to worry about this
 			// Case i) There is one player
 			// Case ii) There is still more than one player (not something I need to worry about)
-			
 	
 			// b) New Word: updatedTurn == (currTurn + 1) % numPlayers && currWord != updatedWord
 			else if(updatedTurn != gameStatus['currTurn'] && gameStatus['currID'] != updatedWordID){
@@ -150,6 +153,7 @@ success: function(gameDataResults){
 	var announcer = document.getElementById('announcer');
 	var announcement = '';
 	// Tells the announcer what to say 
+	document.getElementById("counter").innerHTML = gameStatus['wordCounter'];
 	// If they are competing against the computer
 	if(gameStatus['myTurn'] == -1){
 		announcement = 'Versus: Beat the Bot'; 
@@ -221,6 +225,8 @@ success: function(gameDataResults){
 						// The temporary string is the current word becaue that's what's being
 						var wordData = {'g_id': gameStatus['g_id'], 'curr': tempInput, 'currTurn': gameStatus['currTurn']};
 						initializeTimer();
+						gameStatus['wordCounter']++; 
+						document.getElementById("counter").innerHTML = gameStatus['wordCounter'];
 						
 						$.ajax({
 							type: "GET",
