@@ -52,22 +52,27 @@ function displayError(err){
 
 
 function initializeTimer(){
-
+	
+	$('#timer-bg').removeClass('bg-warning').removeClass('bg-danger').addClass('bg-success');
 	clearInterval(gameStatus['currInterval']);
 	var timer = document.getElementById("timer");
 	gameStatus['currTime'] = gameStatus['maxTime']
 	timer.innerHTML = gameStatus['currTime']; 
 	gameStatus['currInterval'] = setInterval(function(){
 		gameStatus['currTime']--;	
-		if(gameStatus['currTime'] < gameStatus['maxTime'] * .5){
-
+		if(gameStatus['currTime'] < gameStatus['maxTime'] * .25){
+			$('#timer-bg').removeClass('bg-warning').addClass('bg-danger');
 		}
-		if(gameStatus['currTime'] < )
+		if(gameStatus['currTime'] < gameStatus['maxTime'] * .5 && gameStatus['currTime'] > gameStatus['maxTime'] * .25){
+			$('#timer-bg').removeClass('bg-success').addClass('bg-warning');
+		}
+		
 		if(gameStatus['currTime'] < 0){
 			if(gameStatus['currTurn'] == gameStatus['myTurn']){
 				gameOver();
 			}
 		}
+		
 		timer.innerHTML = gameStatus['currTime']; 
 		
 	}, 1000)
