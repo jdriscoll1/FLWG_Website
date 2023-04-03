@@ -56,7 +56,7 @@ var navigationBar = `
 		<h2>The Rules</h2>
 		<p>A participant cannot change more than one letter at a time; thus 'pies' to 'tier is invalid'</p>
 		<p>A participant can neither add nor remove letters; thus pies to pie, or pines is invalid</p>
-		<p>Slang, acronyms, pronouns and abbreviations are not permitted</p>
+		<p>Slang, acronyms, proper nouns and abbreviations are not permitted</p>
 		<p>The dictionary is constantly being improved, please let me know if there are any words you would like added or removed</p>
 		<p>This concept is taken and applied to the three following games</p>
 		<h2>The games</h2>
