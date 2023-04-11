@@ -1,6 +1,6 @@
 # Letter Substitution Puzzles Website
 
-This repository contains the source code for the website of Letter Substitution Puzzles. The website allows users to play and create letter substitution puzzles using the LAMP (Linux, Apache, MySQL, PHP) framework.
+This repository contains the source code for the website of Letter Substitution Puzzles. The website allows users to play and create letter substitution puzzles using the LAMP (Linux, Apache, MySQL, PHP) framework. To visit hte website, please follow this link: https://flwg.link
 
 The front-end of the website is built using HTML, CSS, and JavaScript with the Bootstrap and jQuery libraries. The back-end of the website is built with PHP and runs C libraries.
 
